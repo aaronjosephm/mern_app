@@ -14,6 +14,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import Form from './form';
 
+// All of these query methods are actually being called on the apollo client. Apollo client is being passed as a prop to this child.
+
+// This makes this query available
 const TodosQuery = gql`
   {
     todos {
@@ -23,19 +26,19 @@ const TodosQuery = gql`
     }
   }
 `;
-
+// This makes this mutation available
 const UpdateMutation = gql`
   mutation($id: ID!, $complete: Boolean!) {
     updateTodo(id: $id, complete: $complete)
   }
 `;
-
+// This makes this mutation available
 const RemoveMutation = gql`
   mutation($id: ID!) {
     removeTodo(id: $id)
   }
 `;
-
+// This makes this mutation available
 const CreateMutation = gql`
   mutation($text: String!) {
     createTodo(text: $text) {
@@ -47,6 +50,10 @@ const CreateMutation = gql`
 `;
 
 class App extends Component {
+  // This is an asynchronous function that makes changes to the dom then updates the database.
+  // The await expression causes an async function execution to pause until a Promise is resolved.
+  // Once the promise is resolved, or rejected in some cases, the async function can then resume.
+  // If the Promise is rejected then the await expression throws the rejected value.
   updateTodo = async todo => {
     await this.props.updateTodo({
       variables: {
@@ -70,6 +77,7 @@ class App extends Component {
     });
   };
 
+  //  This is an asynchronous function that makes changes to the dom then updates the database.
   createTodo = async text => {
     await this.props.createTodo({
       variables: {
@@ -86,6 +94,7 @@ class App extends Component {
     });
   };
 
+  //  This is an asynchronous function that makes changes to the dom then updates the database.
   removeTodo = async todo => {
     await this.props.removeTodo({
       variables: {

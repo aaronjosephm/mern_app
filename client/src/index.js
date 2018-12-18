@@ -7,11 +7,15 @@ import { ApolloProvider } from "react-apollo";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// The ApolloCLient needs a uri in order to create an instance.
+
 const client = new ApolloClient({
   uri: "http://localhost:4000"
 });
 
+// We need to wrap the instance of app with apollo in order to make graphQL queries within it.
 
+// ApolloProvider needs to take in ApolloClient as a prop.
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
